@@ -117,19 +117,17 @@ usage = 1
 render_target_v_flip = true
 
 [node name="PlanetHolder" type="Control" parent="PlanetViewport"]
-margin_left = 100.0
-margin_top = 100.0
-margin_right = 140.0
-margin_bottom = 140.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 450.0
+margin_bottom = 450.0
+rect_scale = Vector2( 0.2, 0.2 )
 
 [node name="Control" parent="PlanetViewport/PlanetHolder" instance=ExtResource( 3 )]
 
 [node name="PlanetHolder" type="CenterContainer" parent="."]
-margin_left = -50.0
-margin_top = -50.0
-margin_right = 250.0
-margin_bottom = 250.0
-rect_scale = Vector2( 2, 2 )
+margin_right = 300.0
+margin_bottom = 300.0
 rect_pivot_offset = Vector2( 100, 100 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -162,7 +160,7 @@ __meta__ = {
 }
 
 [node name="Label5" type="Label" parent="Settings/VBoxContainer"]
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 16.0
 theme = ExtResource( 2 )
 custom_colors/font_color = Color( 0.811765, 0.811765, 0.811765, 1 )
@@ -173,7 +171,7 @@ __meta__ = {
 
 [node name="OptionButton" type="OptionButton" parent="Settings/VBoxContainer"]
 margin_top = 17.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 34.0
 focus_mode = 0
 theme = ExtResource( 2 )
@@ -183,13 +181,13 @@ text = "Terran Wet"
 
 [node name="Control2" type="Control" parent="Settings/VBoxContainer"]
 margin_top = 35.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 42.0
 rect_min_size = Vector2( 0, 7 )
 
 [node name="Label" type="Label" parent="Settings/VBoxContainer"]
 margin_top = 43.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 59.0
 theme = ExtResource( 2 )
 custom_colors/font_color = Color( 0.811765, 0.811765, 0.811765, 1 )
@@ -200,12 +198,12 @@ __meta__ = {
 
 [node name="Seed" type="HBoxContainer" parent="Settings/VBoxContainer"]
 margin_top = 60.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 77.0
 custom_constants/separation = 0
 
 [node name="SeedText" type="LineEdit" parent="Settings/VBoxContainer/Seed"]
-margin_right = 152.0
+margin_right = 156.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 theme = ExtResource( 2 )
@@ -216,17 +214,17 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="Settings/VBoxContainer/Seed"]
-margin_left = 152.0
-margin_right = 210.0
+margin_left = 156.0
+margin_right = 214.0
 margin_bottom = 17.0
 theme = ExtResource( 2 )
 text = "rand"
 
 [node name="Control4" type="Control" parent="Settings/VBoxContainer"]
 visible = false
-margin_top = 74.0
+margin_top = 78.0
 margin_right = 210.0
-margin_bottom = 84.0
+margin_bottom = 85.0
 rect_min_size = Vector2( 0, 7 )
 
 [node name="Label2" type="Label" parent="Settings/VBoxContainer"]
@@ -243,9 +241,9 @@ __meta__ = {
 
 [node name="SliderScale" type="HSlider" parent="Settings/VBoxContainer"]
 visible = false
-margin_top = 74.0
-margin_right = 210.0
-margin_bottom = 90.0
+margin_top = 78.0
+margin_right = 214.0
+margin_bottom = 94.0
 theme = ExtResource( 2 )
 min_value = 0.2
 max_value = 1.0
@@ -254,32 +252,33 @@ value = 1.0
 
 [node name="Control" type="Control" parent="Settings/VBoxContainer"]
 margin_top = 78.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 0, 7 )
 
 [node name="Label3" type="Label" parent="Settings/VBoxContainer"]
 margin_top = 86.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 102.0
 theme = ExtResource( 2 )
 custom_colors/font_color = Color( 0.811765, 0.811765, 0.811765, 1 )
-text = "pixels: 100x100"
+text = "pixels: 1000x1000"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SliderPixels" type="HSlider" parent="Settings/VBoxContainer"]
 margin_top = 103.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 119.0
 theme = ExtResource( 2 )
 min_value = 16.0
-value = 100.0
+max_value = 1000.0
+value = 1000.0
 
 [node name="Label4" type="Label" parent="Settings/VBoxContainer"]
 margin_top = 120.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 136.0
 theme = ExtResource( 2 )
 custom_colors/font_color = Color( 0.811765, 0.811765, 0.811765, 1 )
@@ -290,7 +289,7 @@ __meta__ = {
 
 [node name="SliderRotation" type="HSlider" parent="Settings/VBoxContainer"]
 margin_top = 137.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 153.0
 theme = ExtResource( 2 )
 max_value = 6.28
@@ -299,20 +298,20 @@ value = 6.28
 
 [node name="Control6" type="Control" parent="Settings/VBoxContainer"]
 margin_top = 154.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 161.0
 rect_min_size = Vector2( 0, 7 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Settings/VBoxContainer"]
 margin_top = 162.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 179.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label8" type="Label" parent="Settings/VBoxContainer/HBoxContainer2"]
-margin_right = 148.0
+margin_right = 152.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 theme = ExtResource( 2 )
@@ -323,8 +322,8 @@ __meta__ = {
 }
 
 [node name="ShouldDither" type="Button" parent="Settings/VBoxContainer/HBoxContainer2"]
-margin_left = 152.0
-margin_right = 210.0
+margin_left = 156.0
+margin_right = 214.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 58, 0 )
 theme = ExtResource( 2 )
@@ -332,13 +331,13 @@ text = "on"
 
 [node name="Control3" type="Control" parent="Settings/VBoxContainer"]
 margin_top = 180.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 187.0
 rect_min_size = Vector2( 0, 7 )
 
 [node name="Label7" type="Label" parent="Settings/VBoxContainer"]
 margin_top = 188.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 204.0
 theme = ExtResource( 2 )
 custom_colors/font_color = Color( 0.811765, 0.811765, 0.811765, 1 )
@@ -349,14 +348,14 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Settings/VBoxContainer"]
 margin_top = 205.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 222.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RandomizeColors" type="Button" parent="Settings/VBoxContainer/HBoxContainer"]
-margin_right = 103.0
+margin_right = 105.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 theme = ExtResource( 2 )
@@ -364,8 +363,8 @@ custom_constants/hseparation = 2
 text = "random"
 
 [node name="ResetColors" type="Button" parent="Settings/VBoxContainer/HBoxContainer"]
-margin_left = 107.0
-margin_right = 210.0
+margin_left = 109.0
+margin_right = 214.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 theme = ExtResource( 2 )
@@ -373,7 +372,7 @@ text = "reset"
 
 [node name="ColorButtonHolder" type="HBoxContainer" parent="Settings/VBoxContainer"]
 margin_top = 223.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 241.0
 size_flags_horizontal = 3
 custom_constants/separation = 2
@@ -382,19 +381,19 @@ __meta__ = {
 }
 
 [node name="ColorPickerButton" parent="Settings/VBoxContainer/ColorButtonHolder" instance=ExtResource( 8 )]
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 18.0
 rect_scale = Vector2( 1, 1 )
 
 [node name="Control5" type="Control" parent="Settings/VBoxContainer"]
 margin_top = 242.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 249.0
 rect_min_size = Vector2( 0, 7 )
 
 [node name="Label6" type="Label" parent="Settings/VBoxContainer"]
 margin_top = 250.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 266.0
 theme = ExtResource( 2 )
 custom_colors/font_color = Color( 0.811765, 0.811765, 0.811765, 1 )
@@ -405,14 +404,14 @@ __meta__ = {
 
 [node name="ExportPNG" type="Button" parent="Settings/VBoxContainer"]
 margin_top = 267.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 284.0
 theme = ExtResource( 2 )
 text = "png"
 
 [node name="ExportSpriteSheet" type="Button" parent="Settings/VBoxContainer"]
 margin_top = 285.0
-margin_right = 210.0
+margin_right = 214.0
 margin_bottom = 302.0
 theme = ExtResource( 2 )
 text = "spritesheet"
@@ -427,7 +426,8 @@ __meta__ = {
 }
 
 [node name="Control" type="Control" parent="."]
-margin_right = 300.0
+margin_left = -0.529755
+margin_right = 299.47
 margin_bottom = 300.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -598,10 +598,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="Panel"]
-margin_left = 19.2507
-margin_top = 0.88703
-margin_right = 399.251
-margin_bottom = 401.278
+margin_left = 163.251
+margin_top = 144.887
+margin_right = 543.251
+margin_bottom = 545.278
 rect_scale = Vector2( 0.5, 0.5 )
 theme = ExtResource( 2 )
 edit_alpha = false

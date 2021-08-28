@@ -24,9 +24,10 @@ onready var planets = {
 	"Asteroid": preload("res://Planets/Asteroids/Asteroid.tscn"),
 	"Black Hole": preload("res://Planets/BlackHole/BlackHole.tscn"),
 	"Star": preload("res://Planets/Star/Star.tscn"),
+	"No Atmosphere with Moon" : preload("res://Planets/NoAtmosphereMoon/NoAtmosphereMoon.tscn"),
 }
-const max_pixel_size = 100.0;
-var pixels = 100.0
+const max_pixel_size = 1000.0;
+var pixels = 1000.0
 var scale = 1.0
 var sd = 0
 var colors = []
@@ -47,9 +48,11 @@ func _on_OptionButton_item_selected(index):
 func _on_SliderPixels_value_changed(value):
 	pixels = value
 	viewport_planet.get_child(0).set_pixels(value)
-	viewport_holder.rect_scale = Vector2(2,2) * max_pixel_size/pixels
+	#viewport_holder.rect_scale = Vector2(2,2)*100/pixels
+	viewport_planet.rect_scale = Vector2(2,2)*100/pixels
 	#viewport_holder.rect_position = Vector2(1,1) * max_pixel_size/pixels - Vector2(200,200)
 	$Settings/VBoxContainer/Label3.text = "Pixels: " + String(pixels) + "x" + String(pixels)
+	#viewport.size = Vector2(value, value)
 
 func _on_SliderScale_value_changed(value):
 	scale = value
@@ -134,8 +137,8 @@ func _on_ExportPNG_pressed():
 	var image = Image.new()
 	image.create(pixels * planet.relative_scale, pixels * planet.relative_scale, false, Image.FORMAT_RGBA8)
 	var source_xy = 100 - (pixels*(planet.relative_scale-1)*0.5)
-	var source_size = 100*planet.relative_scale
-	var source_rect = Rect2(source_xy, source_xy,source_size,source_size)
+	var source_size = 1000*planet.relative_scale
+	var source_rect = Rect2(0, 0,source_size,source_size)
 	image.blit_rect(tex, source_rect, Vector2(0,0))
 	
 	save_image(image)

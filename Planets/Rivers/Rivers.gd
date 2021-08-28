@@ -64,3 +64,4 @@ func randomize_colors():
 		cloud_colors.append(Color.from_hsv(new_col.h + (0.2 * (i/4.0)), new_col.s, new_col.v))
 
 	set_colors(land_colors + river_colors + cloud_colors)
+
