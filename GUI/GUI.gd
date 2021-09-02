@@ -255,10 +255,12 @@ func _on_Execute_pressed():
 		$Popup._on_ExportButton_pressed(j)
 		yield(self, "exited_sp")
 		var hexCol = viewport_planet.get_child(0).get_colors()
-		for i in len(hexCol):
-			hexCol[i] = hexCol[i].to_html()
+#		for i in len(hexCol):
+#			print(typeof(hexCol[i]))
+#			hexCol[i] = hexCol[i].to_html()
+#			print(hexCol[i])
 
-		file.store_csv_line([String(sd) +"_"+ String(j),3,pixels, pal] + hexCol,",")
+		file.store_csv_line([String(sd) +"_"+ String(j),3,pixels, pal],",")
 
 	file.close()
 	
