@@ -65,3 +65,13 @@ func randomize_colors():
 
 	set_colors(land_colors + river_colors + cloud_colors)
 
+func expCols():
+	var cols = {
+		"Palet 1" : [Color(99, 171, 63)/255, Color(59, 125, 79)/255, Color(47, 87, 83)/255, Color(40, 53, 64)/255, Color(79, 164, 184)/255, Color(64, 73, 115)/255, Color(245, 255, 232)/255, Color(223, 224, 232)/255, Color(104, 111, 153)/255, Color(64, 73, 115)/255],
+		"Palet 2" : [Color(217, 237, 146)/255, Color(181, 228, 140)/255, Color(153, 217, 140)/255, Color(118, 200, 147)/255, Color(82, 182, 154)/255, Color(52, 160, 164)/255, Color(22, 138, 173)/255, Color(26, 117, 159)/255, Color(30, 96, 145)/255, Color(24, 78, 119)/255],
+	}
+	randomize()
+	var nam = cols.keys()[randi()% len(cols)]
+	var col = cols[nam]
+	set_colors(col)
+	return nam

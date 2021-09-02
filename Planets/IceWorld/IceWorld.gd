@@ -74,3 +74,15 @@ func randomize_colors():
 		cloud_colors.append(Color.from_hsv(new_col.h + (0.2 * (i/4.0)), new_col.s, new_col.v))
 
 	set_colors(land_colors + lake_colors + cloud_colors)
+
+func expCols():
+	var cols = {
+		"Palet 1" : [Color(237, 242, 251)/255, Color(226, 234, 252)/255, Color(215, 227, 252)/255, Color(204, 219, 253)/255, Color(193, 211, 254)/255, Color(188, 208, 254)/255, Color(182, 204, 254)/255, Color(177, 200, 255)/255, Color(171, 196, 255)/255],
+		"Palet 2" : [Color(107, 144, 128)/255, Color(136, 170, 153)/255, Color(164, 195, 178)/255, Color(184, 211, 200)/255, Color(204, 227, 222)/255, Color(219, 236, 233)/255, Color(227, 240, 239)/255, Color(234, 244, 244)/255, Color(240, 250, 246)/255],
+		"Palet 3" : [Color(232, 209, 197)/255, Color(235, 215, 204)/255, Color(237, 220, 210)/255, Color(246, 231, 220)/255, Color(255, 241, 230)/255, Color(248, 240, 233)/255, Color(240, 239, 235)/255, Color(239, 230, 223)/255, Color(238, 221, 211)/255],
+	}
+	randomize()
+	var nam = cols.keys()[randi()% len(cols)]
+	var col = cols[nam]
+	set_colors(col)
+	return nam
