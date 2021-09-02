@@ -32,6 +32,7 @@ onready var planets = {
 	"No Atmosphere with Moon" : preload("res://Planets/NoAtmosphereMoon/NoAtmosphereMoon.tscn"),
 	"Two Opposite Moons" : preload("res://Planets/TwoOppMoons/TwoOppMoons.tscn"),
 	"LavaWorld One Moon" : preload("res://Planets/LavaWorldOneMoon/LavaWorldOneMoon.tscn"),
+	"No Atm Three Moon" : preload("res://Planets/NoAtmThreeMoon/NoAtmThreeMoon.tscn"),
 }
 const max_pixel_size = 320.0;
 var pixels = 320.0

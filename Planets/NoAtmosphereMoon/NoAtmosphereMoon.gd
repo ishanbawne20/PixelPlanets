@@ -63,3 +63,15 @@ func randomize_colors():
 		cols.append(new_col)
 
 	set_colors(cols + [cols[1], cols[2]])
+	
+func expCols():
+	var cols = {
+		"Palet 1" : [Color(215, 227, 252)/255, Color(204, 219, 253)/255 , Color(193, 211, 254)/255, Color(182, 204, 254)/255, Color(171, 196, 255)/255],
+		"Palet 2" : [Color(3, 4, 94)/255, Color(0, 119, 182)/255 , Color(0, 180, 216)/255, Color(144, 224, 239)/255, Color(202, 240, 248)/255],
+		"Palet 3" : [Color(222, 201, 233)/255, Color(218, 195, 232)/255 , Color(210, 183, 229)/255, Color(193, 158, 224)/255, Color(177, 133, 219)/255],
+		}
+	randomize()
+	var nam = cols.keys()[randi()% len(cols)]
+	var col = cols[nam]
+	set_colors(col)
+	return nam
