@@ -6,7 +6,7 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
-shader_param/pixels = 100.0
+shader_param/pixels = 320.0
 shader_param/rotation = 0.2
 shader_param/light_origin = Vector2( 0.39, 0.39 )
 shader_param/time_speed = 0.1
@@ -28,7 +28,7 @@ shader_param/time = 0.0
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
-shader_param/pixels = 100.0
+shader_param/pixels = 320.0
 shader_param/rotation = 0.0
 shader_param/cloud_cover = 0.47
 shader_param/light_origin = Vector2( 0.39, 0.39 )

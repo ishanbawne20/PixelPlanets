@@ -13,9 +13,9 @@ var sheet_size = Vector2(50,1)
 func _on_CancelButton_pressed():
 	visible = false
 
-func _on_ExportButton_pressed():
-	progressbar.visible = true
-	get_parent().export_spritesheet(sheet_size, progressbar)
+func _on_ExportButton_pressed(count):
+	#progressbar.visible = true
+	get_parent().export_spritesheet(sheet_size, progressbar, count)
 
 func _on_HeightFrames_value_changed(value):
 	var val = int(value)

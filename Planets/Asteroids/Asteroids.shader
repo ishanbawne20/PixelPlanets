@@ -12,6 +12,7 @@ uniform float size = 50.0;
 uniform int OCTAVES : hint_range(0, 20, 1);
 uniform float seed: hint_range(1, 10);
 uniform bool should_dither = true;
+uniform float time = 0;
 
 float rand(vec2 coord) {
 	return fract(sin(dot(coord.xy ,vec2(12.9898,78.233))) * 15.5453 * seed);
@@ -83,7 +84,7 @@ void fragment() {
 	float d = distance(uv, vec2(0.5));
 	
 	// optional rotation, do this after the dither or the dither will look very messed up
-	uv = rotate(uv, rotation);
+	uv = rotate(uv, rotation +time*time_speed);
 	
 	// two noise values with one slightly offset according to light source, to create shadows later
 	float n = fbm(uv * size);
@@ -92,7 +93,7 @@ void fragment() {
 	// step noise values to determine where the edge of the asteroid is
 	// step cutoff value depends on distance from center
 	float n_step = step(0.2, n - d);
-	float n2_step = step(0.2, n2 - d);
+	float n2_step = step(0.2,n2 - d);
 	
 	// with this val we can determine where the shadows should be
 	float noise_rel = (n2_step + n2) - (n_step + n);

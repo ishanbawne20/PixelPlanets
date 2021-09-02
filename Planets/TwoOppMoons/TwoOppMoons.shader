@@ -1,26 +1,21 @@
 shader_type canvas_item;
+render_mode blend_mix;
 
+uniform float pixels : hint_range(10,100);
+uniform float rotation : hint_range(0.0, 6.28) = 1.0;
 uniform vec2 light_origin = vec2(0.39, 0.39);
+uniform float time_speed : hint_range(0.0, 1.0) = 0.2;
+uniform float dither_size : hint_range(0.0, 10.0) = 2.0;
+uniform float light_border_1 : hint_range(0.0, 1.0) = 0.615;
+uniform float light_border_2 : hint_range(0.0, 1.0) = 0.729;
 uniform vec4 color1 : hint_color;
 uniform vec4 color2 : hint_color;
 uniform vec4 color3 : hint_color;
+uniform float size = 50.0;
+uniform int OCTAVES : hint_range(0, 20, 1);
 uniform float seed: hint_range(1, 10);
-uniform float rotoffset = 0;
-
-uniform float dist_major = 70;
-uniform float dist_minor = 20;
-uniform float radius = 5;
-uniform float rotation : hint_range(0.0, 6.28) = 0;
-uniform float pixels : hint_range(10,100);
-uniform float time = 0;
-uniform float time_speed : hint_range(0.0, 1.0) = 0.005;
-uniform float size = 120;
-const float viewsize = 300.0;
-uniform int OCTAVES : hint_range(0, 20, 1) = 4;
-uniform float dither_size : hint_range(0.0, 10.0) = 0.4;
+uniform float time = 0.0;
 uniform bool should_dither = true;
-uniform float light_border_1 : hint_range(0.0, 1.0) = 0.1;
-uniform float light_border_2 : hint_range(0.0, 1.0) = 0.2;
 
 float rand(vec2 coord) {
 	coord = mod(coord, vec2(1.0,1.0)*round(size));
@@ -63,29 +58,23 @@ vec2 rotate(vec2 coord, float angle){
 	return coord + 0.5;
 }
 
-void fragment()
-{
+void fragment() {
+	//pixelize uv
 	vec2 uv = floor(UV*pixels)/pixels;
-	uv = rotate(uv, rotation + rotoffset);
-	float theta = time*0.1*time_speed;
-	float flat_cord = mod(theta,2.0*3.141);
-	float var_dist = (viewsize/100.0) * sqrt(exp2(dist_major*cos(flat_cord)) + exp2(dist_minor*sin(flat_cord)));
-	float z_dep_mult = (flat_cord > 3.1411) && (distance(uv, vec2(0.5)) <= 0.5/(viewsize/100.0)) ? 0.0 : 1.0 ;
-	vec2 position = vec2(dist_major *cos(flat_cord+0.4),dist_minor*sin(flat_cord));
-	float cutcir = distance(uv, vec2(0.5 + (position.x/viewsize), 0.5 + (position.y/viewsize))) < radius/viewsize ? 1.0 : 0.0;
 	
-	
-	
-	float d_circle = distance(uv, vec2((position.x/viewsize), (position.y/viewsize)));
+	// check distance from center & distance to light
+	float d_circle = distance(uv, vec2(0.5));
 	float d_light = distance(uv , vec2(light_origin));
-
+	// cut out a circle
+	float a = step(d_circle, 0.5);
 	
 	bool dith = dither(uv ,UV);
+	uv = rotate(uv, rotation);
 
 	// get a noise value with light distance added
 	// this creates a moving dynamic shape
 	float fbm1 = fbm(uv);
-	d_light = mod(uv.x*uv.y*time*time_speed,0.3); // change the magic 0.3 here for different light strengths
+	d_light += fbm(uv*size+fbm1+vec2(time*time_speed, 0.0))*0.3; // change the magic 0.3 here for different light strengths
 	
 	// size of edge in which colors should be dithered
 	float dither_border = (1.0/pixels)*dither_size;
@@ -105,5 +94,5 @@ void fragment()
 		}
 	}
 	
-	COLOR = vec4(col,z_dep_mult*cutcir);
+	COLOR = vec4(col, a);
 }

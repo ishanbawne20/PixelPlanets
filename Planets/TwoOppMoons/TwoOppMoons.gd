@@ -4,16 +4,21 @@ func set_pixels(amount):
 	$PlanetUnder.material.set_shader_param("pixels", amount)
 	$Craters.material.set_shader_param("pixels", amount)
 	$Satelite.material.set_shader_param("pixels", amount)
+	$SateliteOpp.material.set_shader_param("pixels", amount)
 
 	$PlanetUnder.rect_size = Vector2(amount, amount)
 	$Craters.rect_size = Vector2(amount, amount)
 	$Satelite.rect_position = Vector2(-amount, -amount)
 	$Satelite.rect_size = Vector2(amount, amount)*3.0
-
+	$SateliteOpp.rect_position = Vector2(-amount, -amount)
+	$SateliteOpp.rect_size = Vector2(amount, amount)*3.0
+	
+	
 func set_light(pos):
 	$PlanetUnder.material.set_shader_param("light_origin", pos)
 	$Craters.material.set_shader_param("light_origin", pos)
 	$Satelite.material.set_shader_param("light_origin", pos)
+	$SateliteOpp.material.set_shader_param("light_origin", pos)
 
 func set_seed(sd):
 	var converted_seed = sd%1000/100.0
@@ -24,16 +29,19 @@ func set_rotate(r):
 	$PlanetUnder.material.set_shader_param("rotation", r)
 	$Craters.material.set_shader_param("rotation", r)
 	$Satelite.material.set_shader_param("rotation",r)
+	$SateliteOpp.material.set_shader_param("rotation",r)
 
 func update_time(t):
 	$PlanetUnder.material.set_shader_param("time", t * get_multiplier($PlanetUnder.material) * 0.02)
 	$Craters.material.set_shader_param("time", t * get_multiplier($Craters.material) * 0.02)
 	$Satelite.material.set_shader_param("time", t*get_multiplier($Satelite.material)*0.02)
+	$SateliteOpp.material.set_shader_param("time", t*get_multiplier($Satelite.material)*0.02)
 
 func set_custom_time(t):
 	$PlanetUnder.material.set_shader_param("time", t * get_multiplier($PlanetUnder.material))
 	$Craters.material.set_shader_param("time", t * get_multiplier($Craters.material))
-	$Satelite.material.set_shader_param("time", t * get_multiplier($Craters.material))
+	$Satelite.material.set_shader_param("time", t * get_multiplier($Satelite.material))
+	$SateliteOpp.material.set_shader_param("time", t * get_multiplier($SateliteOpp.material))
 
 func set_dither(d):
 	$PlanetUnder.material.set_shader_param("should_dither", d)

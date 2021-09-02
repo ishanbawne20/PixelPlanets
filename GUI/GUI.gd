@@ -11,6 +11,11 @@ onready var random_colors = $Settings/VBoxContainer/HBoxContainer/RandomizeColor
 onready var dither_button = $Settings/VBoxContainer/HBoxContainer2/ShouldDither
 onready var colorbutton_scene = preload("res://GUI/ColorPickerButton.tscn")
 
+signal exited_sp
+signal loaded_pl
+
+var choosenPlanet = "Terran Wet"
+
 
 onready var planets = {
 	"Terran Wet": preload("res://Planets/Rivers/Rivers.tscn"),
@@ -25,9 +30,11 @@ onready var planets = {
 	"Black Hole": preload("res://Planets/BlackHole/BlackHole.tscn"),
 	"Star": preload("res://Planets/Star/Star.tscn"),
 	"No Atmosphere with Moon" : preload("res://Planets/NoAtmosphereMoon/NoAtmosphereMoon.tscn"),
+	"Two Opposite Moons" : preload("res://Planets/TwoOppMoons/TwoOppMoons.tscn"),
+	"LavaWorld One Moon" : preload("res://Planets/LavaWorldOneMoon/LavaWorldOneMoon.tscn"),
 }
-const max_pixel_size = 1000.0;
-var pixels = 1000.0
+const max_pixel_size = 320.0;
+var pixels = 320.0
 var scale = 1.0
 var sd = 0
 var colors = []
@@ -42,6 +49,7 @@ func _ready():
 
 func _on_OptionButton_item_selected(index):
 	var chosen = planets[planets.keys()[index]]
+	choosenPlanet = planets.keys()[index]
 	_create_new_planet(chosen)
 	_close_picker()
 
@@ -91,6 +99,7 @@ func _create_new_planet(type):
 	
 	colors = new_p.get_colors()
 	_make_color_buttons()
+	emit_signal("loaded_pl")
 
 func _make_color_buttons():
 	for b in colorholder.get_children():
@@ -141,9 +150,9 @@ func _on_ExportPNG_pressed():
 	var source_rect = Rect2(0, 0,source_size,source_size)
 	image.blit_rect(tex, source_rect, Vector2(0,0))
 	
-	save_image(image)
+	save_image(image, 1)
 
-func export_spritesheet(sheet_size, progressbar):
+func export_spritesheet(sheet_size, progressbar, count):
 	var planet = viewport_planet.get_child(0)
 	var sheet = Image.new()
 	progressbar.max_value = sheet_size.x * sheet_size.y
@@ -159,8 +168,8 @@ func export_spritesheet(sheet_size, progressbar):
 			
 			if index != 0:
 				var image = viewport.get_texture().get_data()
-				var source_xy = 100 - (pixels*(planet.relative_scale-1)*0.5)
-				var source_size = 100*planet.relative_scale
+				var source_xy = 0 - (pixels*(planet.relative_scale-1)*0.5)
+				var source_size = pixels*planet.relative_scale
 				var source_rect = Rect2(source_xy, source_xy,source_size,source_size)
 				var destination = Vector2(x - 1,y) * pixels * planet.relative_scale
 				sheet.blit_rect(image, source_rect, destination)
@@ -170,10 +179,10 @@ func export_spritesheet(sheet_size, progressbar):
 	
 	
 	planet.override_time = false
-	save_image(sheet)
+	save_image(sheet, count)
 	$Popup.visible = false
 
-func save_image(img):
+func save_image(img, count):
 	if OS.get_name() == "HTML5" and OS.has_feature('JavaScript'):
 		var filesaver = get_tree().root.get_node("/root/HTML5File")
 		filesaver.save_image(img, String(sd))
@@ -181,7 +190,8 @@ func save_image(img):
 		if OS.get_name() == "OSX":
 			img.save_png("user://%s.png"%String(sd))
 		else:
-			img.save_png("res://%s.png"%String(sd))
+			img.save_png("res://exports/sprites/%s.png"%String(String(sd) + "_" + String(count)))
+			emit_signal("exited_sp")
 
 func _on_ExportSpriteSheet_pressed():
 	$Panel.visible = false
@@ -217,3 +227,57 @@ func _on_ShouldDither_pressed():
 	else:
 		dither_button.text = "Off"
 	viewport_planet.get_child(0).set_dither(should_dither)
+
+
+func _on_Execute_pressed():
+	var file = File.new()
+	file.open("res://exports/" + choosenPlanet + ".csv",File.WRITE)
+	
+	
+	var perExp = 5
+	
+#	for i in planets:
+#		_create_new_planet(planets[i])
+#		yield(self, "loaded_pl")
+#		print("Planet Loaded")
+#		for j in range(perExp):
+#			_seed_random()
+#			#_on_RandomizeColors_pressed()
+#			#$Popup._on_ExportButton_pressed()
+#			#yield(self, "exited_sp")
+#
+	
+	for j in range(perExp):
+		_seed_random()
+		var pal = viewport_planet.get_child(0).expCols()
+		_on_SliderPixels_value_changed(320)
+		$Popup._on_HeightFrames_value_changed(3)
+		$Popup._on_ExportButton_pressed(j)
+		yield(self, "exited_sp")
+		var hexCol = viewport_planet.get_child(0).get_colors()
+		for i in len(hexCol):
+			hexCol[i] = hexCol[i].to_html()
+
+		file.store_csv_line([String(sd) +"_"+ String(j),3,pixels, pal] + hexCol,",")
+
+	file.close()
+	
+#	for j in seeds:
+#		for k in range(seeds[j]):
+#			var rows = 3
+#			randomize()
+#			seed(j)
+#			viewport_planet.get_child(0).set_seed(j)
+#			viewport_planet.get_child(0).expCols()
+#			_on_SliderPixels_value_changed(320)
+#			$Popup._on_HeightFrames_value_changed(rows)
+#			#$Popup._on_ExportButton_pressed(k)
+#			#yield(self, "exited_sp")
+#			var hexCol = viewport_planet.get_child(0).get_colors()
+#			for i in len(hexCol):
+#				hexCol[i] = hexCol[i].to_html()
+#
+#			file.store_csv_line([String(sd) +"_"+ String(k),rows,pixels] + hexCol,",")
+		
+	file.close()
+	pass # Replace with function body.

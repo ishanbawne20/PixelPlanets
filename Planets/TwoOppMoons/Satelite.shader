@@ -6,6 +6,7 @@ uniform vec4 color2 : hint_color;
 uniform vec4 color3 : hint_color;
 uniform float seed: hint_range(1, 10);
 uniform float rotoffset = 0;
+uniform float direcMult = 1;
 
 uniform float dist_major = 70;
 uniform float dist_minor = 20;
@@ -68,7 +69,7 @@ void fragment()
 	vec2 uv = floor(UV*pixels)/pixels;
 	uv = rotate(uv, rotation + rotoffset);
 	float theta = time*0.1*time_speed;
-	float flat_cord = mod(theta,2.0*3.141);
+	float flat_cord = mod(direcMult*theta,2.0*3.141);
 	float var_dist = (viewsize/100.0) * sqrt(exp2(dist_major*cos(flat_cord)) + exp2(dist_minor*sin(flat_cord)));
 	float z_dep_mult = (flat_cord > 3.1411) && (distance(uv, vec2(0.5)) <= 0.5/(viewsize/100.0)) ? 0.0 : 1.0 ;
 	vec2 position = vec2(dist_major *cos(flat_cord+0.4),dist_minor*sin(flat_cord));

@@ -17,6 +17,7 @@ shader_param/size = 5.294
 shader_param/OCTAVES = 2
 shader_param/seed = 1.567
 shader_param/should_dither = true
+shader_param/time = 0.0
 
 [node name="Asteroid" instance=ExtResource( 2 )]
 margin_right = -412.0
