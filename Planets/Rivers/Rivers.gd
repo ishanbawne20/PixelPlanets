@@ -4,15 +4,20 @@ func set_pixels(amount):
 	$Land.material.set_shader_param("pixels", amount)
 	$Cloud.material.set_shader_param("pixels", amount)
 	$Moon1.material.set_shader_param("pixels", amount)
+	$Moon2.material.set_shader_param("pixels", amount)
 	$Land.rect_size = Vector2(amount, amount)
 	$Cloud.rect_size = Vector2(amount, amount)
 	$Moon1.rect_size = Vector2(amount, amount)*3
 	$Moon1.rect_position = Vector2(-amount, -amount)
+	$Moon2.rect_size = Vector2(amount, amount)*3
+	$Moon2.rect_position = Vector2(-amount, -amount)
+	
 
 func set_light(pos):
 	$Cloud.material.set_shader_param("light_origin", pos)
 	$Land.material.set_shader_param("light_origin", pos)
 	$Moon1.material.set_shader_param("light_origin", pos)
+	$Moon2.material.set_shader_param("light_origin", pos)
 
 func set_seed(sd):
 	var converted_seed = sd%1000/100.0
@@ -20,21 +25,25 @@ func set_seed(sd):
 	$Cloud.material.set_shader_param("cloud_cover", rand_range(0.35, 0.6))
 	$Land.material.set_shader_param("seed", converted_seed)
 	$Moon1.material.set_shader_param("seed", converted_seed)
+	$Moon2.material.set_shader_param("seed", converted_seed)
 
 func set_rotate(r):
 	$Cloud.material.set_shader_param("rotation", r)
 	$Land.material.set_shader_param("rotation", r)
 	$Moon1.material.set_shader_param("rotation", r)
+	$Moon2.material.set_shader_param("rotation", r)
 
 func update_time(t):
 	$Cloud.material.set_shader_param("time", t * get_multiplier($Cloud.material) * 0.01)
 	$Land.material.set_shader_param("time", t * get_multiplier($Land.material) * 0.02)
 	$Moon1.material.set_shader_param("time", t * get_multiplier($Moon1.material) * 0.02)
+	$Moon2.material.set_shader_param("time", t * get_multiplier($Moon2.material) * 0.02)
 
 func set_custom_time(t):
 	$Cloud.material.set_shader_param("time", t * get_multiplier($Cloud.material) * 0.5)
 	$Land.material.set_shader_param("time", t * get_multiplier($Land.material))
-	$Moon1.material.set_shader_param("time", t * get_multiplier($Land.material))
+	$Moon1.material.set_shader_param("time", t * get_multiplier($Moon1.material))
+	$Moon2.material.set_shader_param("time", t * get_multiplier($Moon2.material))
 	
 func set_dither(d):
 	$Land.material.set_shader_param("should_dither", d)
