@@ -189,7 +189,7 @@ func save_image(img, count):
 		filesaver.save_image(img, String(sd))
 	else:
 		if OS.get_name() == "OSX":
-			img.save_png("res://exports/sprites/%s.png"%String(String(sd) + "_" + String(count)))
+			img.save_png("user://%s.png"%String(sd))
 		else:
 			img.save_png("res://exports/sprites/%s.png"%String(String(sd) + "_" + String(count)))
 			emit_signal("exited_sp")
