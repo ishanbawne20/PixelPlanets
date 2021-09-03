@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Planets/Planet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Planets/NoAtmosphere/NoAtmosphere.shader" type="Shader" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Planets/LavaWorldOneMoon/Satelite.shader" type="Shader" id=4]
 [ext_resource path="res://Planets/LavaWorld/Rivers.shader" type="Shader" id=5]
 [ext_resource path="res://Planets/LavaWorldOneMoon/LavaWorldOneMoon.gd" type="Script" id=6]
+[ext_resource path="res://Planets/TwoOppMoons/Satelite.shader" type="Shader" id=7]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -78,6 +79,52 @@ shader_param/should_dither = true
 shader_param/light_border_1 = 0.1
 shader_param/light_border_2 = 0.2
 
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 7 )
+shader_param/light_origin = Vector2( 0.39, 0.39 )
+shader_param/color1 = Color( 0.913725, 0.666667, 0.290196, 1 )
+shader_param/color2 = Color( 0.760784, 0.541176, 0.129412, 1 )
+shader_param/color3 = Color( 0.533333, 0.4, 0.054902, 1 )
+shader_param/seed = null
+shader_param/rotoffset = 0.69
+shader_param/direcMult = -1.0
+shader_param/dist_major = 69.0
+shader_param/dist_minor = 21.0
+shader_param/radius = 5.0
+shader_param/rotation = 0.0
+shader_param/pixels = null
+shader_param/time = 0.0
+shader_param/time_speed = 0.008
+shader_param/size = 120.0
+shader_param/OCTAVES = 4
+shader_param/dither_size = 0.4
+shader_param/should_dither = true
+shader_param/light_border_1 = 0.1
+shader_param/light_border_2 = 0.2
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 7 )
+shader_param/light_origin = Vector2( 0.39, 0.39 )
+shader_param/color1 = Color( 0.788235, 0.984314, 0.498039, 1 )
+shader_param/color2 = Color( 0.486275, 0.772549, 0.219608, 1 )
+shader_param/color3 = Color( 0.25098, 0.592157, 0.0352941, 1 )
+shader_param/seed = null
+shader_param/rotoffset = 0.3
+shader_param/direcMult = 1.0
+shader_param/dist_major = 69.0
+shader_param/dist_minor = 21.0
+shader_param/radius = 3.0
+shader_param/rotation = 0.0
+shader_param/pixels = null
+shader_param/time = 0.0
+shader_param/time_speed = 0.004
+shader_param/size = 120.0
+shader_param/OCTAVES = 4
+shader_param/dither_size = 0.4
+shader_param/should_dither = true
+shader_param/light_border_1 = 0.1
+shader_param/light_border_2 = 0.2
+
 [node name="LavaWorld" instance=ExtResource( 1 )]
 margin_right = -412.0
 margin_bottom = -200.0
@@ -115,3 +162,13 @@ margin_bottom = 300.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Moon2" type="ColorRect" parent="." index="4"]
+material = SubResource( 5 )
+margin_right = 300.0
+margin_bottom = 300.0
+
+[node name="Moon3" type="ColorRect" parent="." index="5"]
+material = SubResource( 6 )
+margin_right = 300.0
+margin_bottom = 300.0

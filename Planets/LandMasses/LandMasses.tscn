@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Planets/LandMasses/PlanetUnder.shader" type="Shader" id=1]
 [ext_resource path="res://Planets/LandMasses/Clouds.shader" type="Shader" id=2]
@@ -86,6 +86,52 @@ shader_param/should_dither = true
 shader_param/light_border_1 = 0.1
 shader_param/light_border_2 = 0.2
 
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 5 )
+shader_param/light_origin = Vector2( 0.39, 0.39 )
+shader_param/color1 = Color( 0.329412, 0.945098, 0.827451, 1 )
+shader_param/color2 = Color( 0.129412, 0.713726, 0.72549, 1 )
+shader_param/color3 = Color( 0.0431373, 0.494118, 0.478431, 1 )
+shader_param/seed = null
+shader_param/rotoffset = 0.8
+shader_param/direcMult = 1.0
+shader_param/dist_major = 66.0
+shader_param/dist_minor = 18.0
+shader_param/radius = 5.5
+shader_param/rotation = 0.0
+shader_param/pixels = null
+shader_param/time = 0.0
+shader_param/time_speed = 0.007
+shader_param/size = 120.0
+shader_param/OCTAVES = 4
+shader_param/dither_size = 0.4
+shader_param/should_dither = true
+shader_param/light_border_1 = 0.1
+shader_param/light_border_2 = 0.2
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 5 )
+shader_param/light_origin = Vector2( 0.39, 0.39 )
+shader_param/color1 = Color( 0.643137, 0.313726, 0.945098, 1 )
+shader_param/color2 = Color( 0.462745, 0.113725, 0.72549, 1 )
+shader_param/color3 = Color( 0.239216, 0, 0.392157, 1 )
+shader_param/seed = null
+shader_param/rotoffset = 0.8
+shader_param/direcMult = -1.0
+shader_param/dist_major = 72.0
+shader_param/dist_minor = 19.0
+shader_param/radius = 7.0
+shader_param/rotation = 0.0
+shader_param/pixels = null
+shader_param/time = 0.0
+shader_param/time_speed = 0.004
+shader_param/size = 120.0
+shader_param/OCTAVES = 4
+shader_param/dither_size = 0.4
+shader_param/should_dither = true
+shader_param/light_border_1 = 0.1
+shader_param/light_border_2 = 0.2
+
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -124,5 +170,15 @@ __meta__ = {
 
 [node name="Moon1" type="ColorRect" parent="."]
 material = SubResource( 4 )
+margin_right = 300.0
+margin_bottom = 300.0
+
+[node name="Moon2" type="ColorRect" parent="."]
+material = SubResource( 5 )
+margin_right = 300.0
+margin_bottom = 300.0
+
+[node name="Moon3" type="ColorRect" parent="."]
+material = SubResource( 6 )
 margin_right = 300.0
 margin_bottom = 300.0

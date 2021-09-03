@@ -5,18 +5,26 @@ func set_pixels(amount):
 	$Craters.material.set_shader_param("pixels", amount)
 	$LavaRivers.material.set_shader_param("pixels", amount)
 	$Satelite.material.set_shader_param("pixels", amount)
+	$Moon2.material.set_shader_param("pixels", amount)
+	$Moon3.material.set_shader_param("pixels", amount)
 	
 	$PlanetUnder.rect_size = Vector2(amount, amount)
 	$Craters.rect_size = Vector2(amount, amount)
 	$LavaRivers.rect_size = Vector2(amount, amount)
 	$Satelite.rect_size = Vector2(amount, amount)*3
 	$Satelite.rect_position = Vector2(-amount, -amount)
+	$Moon2.rect_size = Vector2(amount, amount)*3
+	$Moon2.rect_position = Vector2(-amount, -amount)
+	$Moon3.rect_size = Vector2(amount, amount)*3
+	$Moon3.rect_position = Vector2(-amount, -amount)
 	
 func set_light(pos):
 	$PlanetUnder.material.set_shader_param("light_origin", pos)
 	$Craters.material.set_shader_param("light_origin", pos)
 	$LavaRivers.material.set_shader_param("light_origin", pos)
 	$Satelite.material.set_shader_param("light_origin", pos)
+	$Moon2.material.set_shader_param("light_origin", pos)
+	$Moon3.material.set_shader_param("light_origin", pos)
 
 func set_seed(sd):
 	var converted_seed = sd%1000/100.0
@@ -24,24 +32,32 @@ func set_seed(sd):
 	$Craters.material.set_shader_param("seed", converted_seed)
 	$LavaRivers.material.set_shader_param("seed", converted_seed)
 	$Satelite.material.set_shader_param("seed", converted_seed)
+	$Moon2.material.set_shader_param("seed", converted_seed)
+	$Moon3.material.set_shader_param("seed", converted_seed)
 
 func set_rotate(r):
 	$PlanetUnder.material.set_shader_param("rotation", r)
 	$Craters.material.set_shader_param("rotation", r)
 	$LavaRivers.material.set_shader_param("rotation", r)
 	$Satelite.material.set_shader_param("rotation", r)
+	$Moon2.material.set_shader_param("rotation", r)
+	$Moon3.material.set_shader_param("rotation", r)
 
 func update_time(t):
 	$PlanetUnder.material.set_shader_param("time", t * get_multiplier($PlanetUnder.material) * 0.02)
 	$Craters.material.set_shader_param("time", t * get_multiplier($Craters.material) * 0.02)
 	$LavaRivers.material.set_shader_param("time", t * get_multiplier($LavaRivers.material) * 0.02)
-	$Satelite.material.set_shader_param("time", t * get_multiplier($LavaRivers.material) * 0.02)
+	$Satelite.material.set_shader_param("time", t * get_multiplier($Satelite.material) * 0.02)
+	$Moon2.material.set_shader_param("time", t * get_multiplier($Moon2.material) * 0.02)
+	$Moon3.material.set_shader_param("time", t * get_multiplier($Moon3.material) * 0.02)
 	
 func set_custom_time(t):
 	$PlanetUnder.material.set_shader_param("time", t * get_multiplier($PlanetUnder.material))
 	$Craters.material.set_shader_param("time", t * get_multiplier($Craters.material))
 	$LavaRivers.material.set_shader_param("time", t * get_multiplier($LavaRivers.material))
-	$Satelite.material.set_shader_param("time", t * get_multiplier($LavaRivers.material))
+	$Satelite.material.set_shader_param("time", t * get_multiplier($Satelite.material))
+	$Moon2.material.set_shader_param("time", t * get_multiplier($Moon2.material))
+	$Moon3.material.set_shader_param("time", t * get_multiplier($Moon3.material))
 
 func set_dither(d):
 	$PlanetUnder.material.set_shader_param("should_dither", d)

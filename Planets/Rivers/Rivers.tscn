@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Planets/Rivers/LandRivers.shader" type="Shader" id=1]
 [ext_resource path="res://Planets/LandMasses/Clouds.shader" type="Shader" id=2]
@@ -93,6 +93,29 @@ shader_param/should_dither = true
 shader_param/light_border_1 = 0.1
 shader_param/light_border_2 = 0.2
 
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 4 )
+shader_param/light_origin = Vector2( 0.39, 0.39 )
+shader_param/color1 = Color( 0.945098, 0.243137, 0.243137, 1 )
+shader_param/color2 = Color( 0.737255, 0.0980392, 0.0980392, 1 )
+shader_param/color3 = Color( 0.47451, 0.027451, 0.027451, 1 )
+shader_param/seed = null
+shader_param/rotoffset = 0.4
+shader_param/direcMult = 1.0
+shader_param/dist_major = 71.0
+shader_param/dist_minor = 21.0
+shader_param/radius = 6.0
+shader_param/rotation = 0.0
+shader_param/pixels = null
+shader_param/time = 0.0
+shader_param/time_speed = 0.004
+shader_param/size = 120.0
+shader_param/OCTAVES = 4
+shader_param/dither_size = 0.4
+shader_param/should_dither = true
+shader_param/light_border_1 = 0.1
+shader_param/light_border_2 = 0.2
+
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -134,3 +157,8 @@ margin_bottom = 300.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Moon3" type="ColorRect" parent="."]
+material = SubResource( 5 )
+margin_right = 300.0
+margin_bottom = 300.0

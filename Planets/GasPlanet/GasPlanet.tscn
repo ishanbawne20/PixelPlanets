@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Planets/GasPlanet/GasPlanet.gd" type="Script" id=1]
 [ext_resource path="res://Planets/GasPlanet/GasPlanet.shader" type="Shader" id=2]
@@ -67,6 +67,52 @@ shader_param/should_dither = true
 shader_param/light_border_1 = 0.1
 shader_param/light_border_2 = 0.2
 
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 3 )
+shader_param/light_origin = Vector2( 0.39, 0.39 )
+shader_param/color1 = Color( 0.968627, 0.968627, 0.486275, 1 )
+shader_param/color2 = Color( 0.862745, 0.862745, 0.192157, 1 )
+shader_param/color3 = Color( 0.556863, 0.572549, 0.0235294, 1 )
+shader_param/seed = null
+shader_param/rotoffset = 0.5
+shader_param/direcMult = -1.0
+shader_param/dist_major = 73.0
+shader_param/dist_minor = 18.0
+shader_param/radius = 4.0
+shader_param/rotation = 0.0
+shader_param/pixels = null
+shader_param/time = 0.0
+shader_param/time_speed = 0.004
+shader_param/size = 120.0
+shader_param/OCTAVES = 4
+shader_param/dither_size = 0.4
+shader_param/should_dither = true
+shader_param/light_border_1 = 0.1
+shader_param/light_border_2 = 0.2
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 3 )
+shader_param/light_origin = Vector2( 0.39, 0.39 )
+shader_param/color1 = Color( 0.368627, 0.992157, 0.623529, 1 )
+shader_param/color2 = Color( 0.192157, 0.780392, 0.490196, 1 )
+shader_param/color3 = Color( 0.0196078, 0.419608, 0.247059, 1 )
+shader_param/seed = null
+shader_param/rotoffset = 0.0
+shader_param/direcMult = 1.0
+shader_param/dist_major = 64.0
+shader_param/dist_minor = 17.0
+shader_param/radius = 6.0
+shader_param/rotation = 0.0
+shader_param/pixels = null
+shader_param/time = 0.0
+shader_param/time_speed = 0.004
+shader_param/size = 120.0
+shader_param/OCTAVES = 4
+shader_param/dither_size = 0.4
+shader_param/should_dither = true
+shader_param/light_border_1 = 0.1
+shader_param/light_border_2 = 0.2
+
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -96,5 +142,15 @@ __meta__ = {
 
 [node name="Moon1" type="ColorRect" parent="."]
 material = SubResource( 3 )
+margin_right = 300.0
+margin_bottom = 300.0
+
+[node name="Moon2" type="ColorRect" parent="."]
+material = SubResource( 4 )
+margin_right = 300.0
+margin_bottom = 300.0
+
+[node name="Moon3" type="ColorRect" parent="."]
+material = SubResource( 5 )
 margin_right = 300.0
 margin_bottom = 300.0
