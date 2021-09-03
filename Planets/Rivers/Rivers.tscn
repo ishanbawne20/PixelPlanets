@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Planets/Rivers/LandRivers.shader" type="Shader" id=1]
 [ext_resource path="res://Planets/LandMasses/Clouds.shader" type="Shader" id=2]
 [ext_resource path="res://Planets/Rivers/Rivers.gd" type="Script" id=3]
+[ext_resource path="res://Planets/TwoOppMoons/Satelite.shader" type="Shader" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
@@ -46,6 +47,29 @@ shader_param/OCTAVES = 2
 shader_param/seed = 5.939
 shader_param/time = 0.0
 
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 4 )
+shader_param/light_origin = Vector2( 0.39, 0.39 )
+shader_param/color1 = Color( 0.137255, 0.627451, 0.835294, 1 )
+shader_param/color2 = Color( 0.113725, 0.231373, 0.819608, 1 )
+shader_param/color3 = Color( 0.0705882, 0.133333, 0.345098, 1 )
+shader_param/seed = null
+shader_param/rotoffset = 0.0
+shader_param/direcMult = 1.0
+shader_param/dist_major = 70.0
+shader_param/dist_minor = 20.0
+shader_param/radius = 5.0
+shader_param/rotation = 0.0
+shader_param/pixels = null
+shader_param/time = 0.0
+shader_param/time_speed = 0.005
+shader_param/size = 120.0
+shader_param/OCTAVES = 4
+shader_param/dither_size = 0.4
+shader_param/should_dither = true
+shader_param/light_border_1 = 0.1
+shader_param/light_border_2 = 0.2
+
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -68,6 +92,14 @@ __meta__ = {
 material = SubResource( 2 )
 margin_right = 100.0
 margin_bottom = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Moon1" type="ColorRect" parent="."]
+material = SubResource( 3 )
+margin_right = 300.0
+margin_bottom = 300.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

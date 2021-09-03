@@ -55,3 +55,6 @@ func randomize_colors():
 		cols.append(new_col)
 
 	set_colors([Color("272736")] + [cols[0], cols[3]] + cols)
+
+func expCols():
+	randomize_colors()

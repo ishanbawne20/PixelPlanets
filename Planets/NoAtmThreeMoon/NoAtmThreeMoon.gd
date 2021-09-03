@@ -5,6 +5,7 @@ func set_pixels(amount):
 	$Craters.material.set_shader_param("pixels", amount)
 	$Satelite.material.set_shader_param("pixels", amount)
 	$SateliteOpp.material.set_shader_param("pixels", amount)
+	$MoonTh.material.set_shader_param("pixels", amount)
 
 	$PlanetUnder.rect_size = Vector2(amount, amount)
 	$Craters.rect_size = Vector2(amount, amount)
