@@ -9,6 +9,7 @@ onready var colorholder = $Settings/VBoxContainer/ColorButtonHolder
 onready var picker = $Panel/ColorPicker
 onready var random_colors = $Settings/VBoxContainer/HBoxContainer/RandomizeColors
 onready var dither_button = $Settings/VBoxContainer/HBoxContainer2/ShouldDither
+
 onready var colorbutton_scene = preload("res://GUI/ColorPickerButton.tscn")
 
 signal exited_sp
@@ -16,6 +17,9 @@ signal loaded_pl
 
 var choosenPlanet = "Terran Wet"
 
+
+const GIFExporter = preload("res://addons/gdgifexporter/exporter.gd")
+const MedianCutQuantization = preload("res://addons/gdgifexporter/quantization/median_cut.gd")
 
 onready var planets = {
 	"Terran Wet": preload("res://Planets/Rivers/Rivers.tscn"),
@@ -44,6 +48,7 @@ var should_dither = true
 func _ready():
 	for k in planets.keys():
 		optionbutton.add_item(k)
+
 	_seed_random()
 	_create_new_planet(planets["Terran Wet"])
 
@@ -253,7 +258,8 @@ func _on_Execute_pressed():
 		var pal = viewport_planet.get_child(0).expCols()
 		_on_SliderPixels_value_changed(320)
 		$Popup._on_HeightFrames_value_changed(2)
-		$Popup._on_ExportButton_pressed(j)
+		#$Popup._on_ExportButton_pressed(j)
+		$GifPopup._on_ExportButton_pressed()
 		yield(self, "exited_sp")
 		var hexCol = viewport_planet.get_child(0).get_colors()
 #		for i in len(hexCol):
@@ -284,3 +290,54 @@ func _on_Execute_pressed():
 		
 	file.close()
 	pass # Replace with function body.
+func _on_ExportGIF_pressed():
+	$GifPopup.visible = true
+
+
+func export_gif(frames, frame_delay, progressbar):
+	var planet = viewport_planet.get_child(0)
+	var exporter = GIFExporter.new(100*planet.relative_scale, 100*planet.relative_scale)
+	progressbar.max_value = frames
+	
+	planet.override_time = true
+	planet.set_custom_time(0.0)
+	yield(get_tree(), "idle_frame")
+	
+	for i in range(frames):
+		planet.set_custom_time(lerp(0.0, 1.0, float(i)/float(frames)))
+
+		yield(get_tree(), "idle_frame")
+		
+		var tex = viewport.get_texture().get_data()
+		var image = Image.new()
+		image.create(pixels * planet.relative_scale, pixels * planet.relative_scale, false, Image.FORMAT_RGBA8)
+		
+		var source_xy = 0 - (pixels*(planet.relative_scale-1)*0.5)
+		var source_size = 320*planet.relative_scale
+		var source_rect = Rect2(source_xy, source_xy,source_size,source_size)
+		image.blit_rect(tex, source_rect, Vector2(0,0))
+		exporter.add_frame(image, frame_delay, MedianCutQuantization)
+		
+		progressbar.value = i
+	
+	
+	if OS.get_name() != "HTML5" or !OS.has_feature('JavaScript'):
+		var file: File = File.new()
+		if OS.get_name() == "OSX":
+			file.open("user://%s.gif"%String(sd), File.WRITE)
+		else:
+			file.open("res://exports/sprites/%s.png"%String(sd), File.WRITE)
+		file.store_buffer(exporter.export_file_data())
+		file.close()
+		emit_signal("exited_sp")
+	else:
+		var fileName = String(sd)
+		var data = Array(exporter.export_file_data())
+		JavaScript.eval("downloadGif('%s', %s);" % [fileName, str(data)], true)
+	
+	
+	
+	
+	planet.override_time = false
+	$GifPopup.visible = false
+	progressbar.visible = false
