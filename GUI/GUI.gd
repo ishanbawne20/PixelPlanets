@@ -252,7 +252,7 @@ func _on_Execute_pressed():
 		_seed_random()
 		var pal = viewport_planet.get_child(0).expCols()
 		_on_SliderPixels_value_changed(320)
-		$Popup._on_HeightFrames_value_changed(3)
+		$Popup._on_HeightFrames_value_changed(2)
 		$Popup._on_ExportButton_pressed(j)
 		yield(self, "exited_sp")
 		var hexCol = viewport_planet.get_child(0).get_colors()
@@ -261,7 +261,7 @@ func _on_Execute_pressed():
 #			hexCol[i] = hexCol[i].to_html()
 #			print(hexCol[i])
 
-		file.store_csv_line([String(sd) +"_"+ String(j),3,pixels, pal],",")
+		file.store_csv_line([String(sd)+"_"+String(j),3,pixels, pal],",")
 
 	file.close()
 	

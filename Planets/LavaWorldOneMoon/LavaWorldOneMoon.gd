@@ -99,3 +99,8 @@ func expCols():
 		"Palet 1" : [Color(255, 72, 0)/255,Color(255, 84, 0)/255,Color(255, 90, 0)/255,Color(255, 115, 0)/255,Color(255, 121, 0)/255,Color(255, 133, 0)/255,Color(255, 145, 0)/255,Color(255, 158, 0)/255,],
 		"Palet 2" : [Color(207, 219, 213)/255,Color(220, 228, 218)/255,Color(232, 237, 223)/255,Color(245, 203, 92)/255,Color(141, 120, 64)/255,Color(36, 36, 35)/255,Color(44, 45, 43)/255,Color(51, 53, 51)/255,],
 		}
+	randomize()
+	var nam = cols.keys()[randi()% len(cols)]
+	var col = cols[nam]
+	set_colors(col)
+	return nam

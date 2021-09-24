@@ -234,6 +234,9 @@ __meta__ = {
 material = SubResource( 5 )
 margin_right = 300.0
 margin_bottom = 300.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Moon2" type="ColorRect" parent="." index="2"]
 material = SubResource( 6 )
